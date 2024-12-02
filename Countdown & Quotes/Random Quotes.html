@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quotes</title>
+    <style>
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+            background: linear-gradient(136deg, #3498db, #8e44ad);
+            color: #ffffff;
+        }
+
+        .quote-container {
+            max-width: 710px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: fadeInUp 1s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .quote-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.6), rgba(142, 68, 173, 0.6));
+            opacity: 0.7;
+            z-index: -1;
+            transform: scale(1.5);
+            transition: transform 1s ease-in-out;
+        }
+
+        .quote-container:hover::before {
+            transform: scale(1);
+        }
+
+        .quote {
+            font-size: 28px;
+            color: #ecf0f1;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-weight: 500;
+            font-style: normal;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .author {
+            font-size: 20px;
+            color: #dcdde1;
+            font-weight: 700;
+            margin-top: 20px;
+            opacity: 0.9;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quote-container" id="quote-container">
+        <div class="quote" id="quote"></div>
+        <div class="author" id="author">- Author</div>
+    </div>
+    <script>
+        const quotes = [
+            { quote: "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.", author: "Albert Schweitzer" },
+            { quote: "The purpose of life is not to be happy. It is to be useful, to be honourable, to be compassionate, to have it make some difference that you have lived and lived well.", author: "Ralph Waldo Emerson" },
+            { quote: "In the end, we will remember not the words of our enemies, but the silence of our friends.", author: "Martin Luther King Jr." },
+            { quote: "The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.", author: "Helen Keller" },
+            { quote: "The most important thing is to enjoy your life—to be happy it’s all that matters.", author: "Audrey Hepburn" },
+            { quote: "Life is short, art long, opportunity fleeting, experience treacherous, judgment difficult.", author: "Hippocrates" },
+            { quote: "People who are crazy enough to think they can change the world, are the ones who do.", author: "Rob Siltanen" },
+            { quote: "The healthiest response to life is joy.", author: " Deepak Chopra" }
+        ];
+
+        let currentSlide = 0;
+
+        function randomQuote() {
+            if (currentSlide >= quotes.length) {
+                currentSlide = 0;
+            }
+            const currentQuote = quotes[currentSlide];
+            document.getElementById('quote').textContent = currentQuote.quote;
+            document.getElementById('author').textContent = `- ${currentQuote.author}`;
+            currentSlide++;
+        }
+
+        randomQuote();
+
+        setInterval(() => {
+            randomQuote();
+        }, 2000);
+    </script>
+</body>
+
+</html>
